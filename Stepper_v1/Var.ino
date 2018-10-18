@@ -6,3 +6,6 @@ const unsigned long impulseWidth = 15uL; //mcs
 int numbers = 36; //78 max!!!
 
 int microStepping = 1;
+
+
+//
