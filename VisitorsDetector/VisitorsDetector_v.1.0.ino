@@ -1,6 +1,8 @@
 int PIN_DETECTION   = 2;
 int PIN_TRIGGER_CAM = 5;
 int PIN_TRIGGER_ESP = 6;
+int PIN_LED = 13;
+
 
 unsigned long visitingInterval     = 10uL * 60uL * 1000uL;
 unsigned long noDetectionInterval  =        15uL * 1000uL;
@@ -13,9 +15,16 @@ void setup (void)
   pinMode(PIN_TRIGGER_CAM, OUTPUT);
   pinMode(PIN_TRIGGER_ESP, OUTPUT);
   
+  pinMode(PIN_LED, OUTPUT);
+  
   digitalWrite(PIN_DETECTION, LOW);
   digitalWrite(PIN_TRIGGER_CAM, LOW); 
   digitalWrite(PIN_TRIGGER_ESP, LOW);
+  
+  digitalWrite(PIN_LED, digitalRead (PIN_DETECTION));
+  
+  attachInterrupt(0, setLED, CHANGE);
+
 }
 
 void loop (void)
@@ -51,4 +60,9 @@ void trigger ()
     delay(5);
     digitalWrite(PIN_TRIGGER_CAM, LOW); 
     digitalWrite(PIN_TRIGGER_ESP, LOW);
+}
+
+void setLED ()
+{
+  digitalWrite(PIN_LED, digitalRead (PIN_DETECTION));
 }
