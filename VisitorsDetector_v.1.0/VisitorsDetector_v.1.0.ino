@@ -39,7 +39,7 @@ void loop (void)
   
   while ( millis() < startvisitorCheck + visitorCheckInterval ) // loop for checking if there is a visitor or not
   {
-      if ( digitalRead (PIN_DETECTION) == LOW && visitorDetected == false) // if after 'noDetectionInterval' a detection occures, there is a visitor
+      if ( digitalRead (PIN_DETECTION) == HIGH && visitorDetected == false) // if after 'noDetectionInterval' a detection occures, there is a visitor
       {
           visitorDetected = true;
           trigger(); // trigger CAM and ESP
